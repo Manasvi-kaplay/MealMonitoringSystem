@@ -1,0 +1,55 @@
+<html>
+<body>
+<ul>
+  <li><button class="open-button" onclick="openForm1()">Login as district incharge</button></li>&nbsp;&nbsp;&nbsp;
+  <li><button class="open-button" onclick="openForm2()">Login as school incharge</button></li>
+</ul>
+<center>
+    <br><br><br><br>
+<div class="form-popup" id="myForm1">
+    <form action="/authentication" class="form-container" method="post">
+      <label for="unm"><b>Username:</b></label>
+      <input type="text" placeholder="Enter username" name="email" required>
+      <label for="upass"><b>Password:</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      <input type="hidden" value="b" name="utype">
+      <button type="submit" class="btn">Submit</button>
+      <button type="button" class="btn cancel" onclick="closeForm1()">Close</button>
+    </form>
+  </div>
+  <div class="form-popup" id="myForm2">
+    <form action="/authentication" class="form-container" method="post">
+      <label for="unm"><b>Username:</b></label>
+      <input type="text" placeholder="Enter username" name="email" required>
+      <label for="upass"><b>Password:</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+      <input type="hidden" value="c" name="utype">
+      <button type="submit" class="btn">Submit</button>
+      <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+    </form>
+  </div>
+  <div class="error">
+</div>
+  </center>
+<br><br>
+<center>
+    <h1><b><i>Meal monitoring system</i></b></h1>
+</center>
+<script>
+    function openForm1() {
+      document.getElementById("myForm1").style.display = "block";
+    }
+    function openForm2() {
+        document.getElementById("myForm2").style.display = "block";
+      }
+    
+    function closeForm1() {
+      document.getElementById("myForm1").style.display = "none";
+    }
+    function closeForm2() {
+      document.getElementById("myForm2").style.display = "none";
+    }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+<head></head>
+<body>
+<center>
+    <h1>My profile</h1>
+    <h4>District: <%=district%>&nbsp;&nbsp;&nbsp;School: <%=school%>&nbsp;&nbsp;&nbsp;Address: <%=address%>&nbsp;&nbsp;&nbsp;Phone: <%=phone%>&nbsp;&nbsp;&nbsp;User id:<%=id%></h4>
+    <button type="submit" onclick="upload()">Upload today's data</button>
+    <div class="form-popup" id="myForm">
+        <form class="form-container" action="/upload" method="POST" enctype="multipart/form-data">
+          <label for="photo"><b>Select image:</b></label>
+          <input type="file" name="photo" required>
+          <button type="submit" class="btn">Submit</button>
+          <button type="button" class="btn cancel" onclick="close()">Close</button>
+        </form>
+      </div>
+</center>
+<script>
+    function upload(){
+        document.getElementById("myForm").style.display = "block";
+    }
+    function close() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    function process(){
+      $(document).on("change",".uploadFile", function(e){
+        var config={
+          apiKey: "AIzaSyC7DxW71c7o5OQEvcoll8PlFZmxUYVc-Ho",
+    authDomain:"aesthetic-nova-242210.firebaseapp.com",
+    databaseURL: "https://aesthetic-nova-242210.firebaseio.com",
+    storageBucket: "aesthetic-nova-242210.appspot.com"
+        }
+        firebase.initializeApp(config);
+                      var uploadFile = $(this);
+                      var files = !!this.files ? this.files : [];
+                      if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+                      if (/^image/.test( files[0].type)){ // only image file
+                        var file_details=e.target.files[0];
+                      console.log("target files[0]..",file_details);
+                      var storageRef=firebase.storage().ref(data.email+'/'+file_details.name);
+                      storageRef.put(file_details);
+                          var reader = new FileReader(); // instance of the FileReader
+                          reader.readAsDataURL(files[0]); // read the local file
+                          reader.onloadend = function(){ // set image data as background of div
+              uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
+            var imgg=document.createElement("IMG");
+            imgg.setAttribute("src", this.result);
+                              imgg.setAttribute("width", "228");
+                              imgg.setAttribute("height", "228");
+                              imgg.setAttribute("alt", "image not available");
+                              imgg.style.margin="10px 10px 10px 10px";
+                          }
+                      }
+                    })
+    }
+</script>
+</body>
+</html>
